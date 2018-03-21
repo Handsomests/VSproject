@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>f:\vs project\string\string\</FILEPATH>
+      <FILENAME>string.h</FILENAME>
+      <LINE>25</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6282</DEFECTCODE>
+    <DESCRIPTION>运算符不正确: 在 Boolean 上下文中执行了常量赋值。应考虑改用“==”。</DESCRIPTION>
+    <FUNCTION>String::{ctor}</FUNCTION>
+    <DECORATED>??0String@@QAE@PBD@Z</DECORATED>
+    <FUNCLINE>22</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>f:\vs project\string\string\</FILEPATH>
+      <FILENAME>string.h</FILENAME>
+      <LINE>27</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>6387</DEFECTCODE>
+    <DESCRIPTION>“str”可能是“0”: 这不符合函数“strcpy_s”的规范。</DESCRIPTION>
+    <FUNCTION>String::{ctor}</FUNCTION>
+    <DECORATED>??0String@@QAE@PBD@Z</DECORATED>
+    <FUNCLINE>22</FUNCLINE>
+    <PROBABILITY>1</PROBABILITY>
+    <RANK>4</RANK>
+    <CATEGORY>
+      <RULECATEGORY>mspft</RULECATEGORY>
+    </CATEGORY>
+    <PATH>
+      <SFA>
+        <FILEPATH>f:\vs project\string\string\</FILEPATH>
+        <FILENAME>string.h</FILENAME>
+        <LINE>23</LINE>
+        <COLUMN>6</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>f:\vs project\string\string\</FILEPATH>
+        <FILENAME>string.h</FILENAME>
+        <LINE>24</LINE>
+        <COLUMN>5</COLUMN>
+      </SFA>
+      <SFA>
+        <FILEPATH>f:\vs project\string\string\</FILEPATH>
+        <FILENAME>string.h</FILENAME>
+        <LINE>25</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>1</ID>
+          <KIND>分支</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>跳过此分支(假定“str=0”为 false)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>f:\vs project\string\string\</FILEPATH>
+        <FILENAME>string.h</FILENAME>
+        <LINE>27</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>2</ID>
+          <KIND>声明</KIND>
+          <IMPORTANCE>Full</IMPORTANCE>
+          <MESSAGE>“str”是“strcpy_s”中的输出(在 c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h:27 处声明)</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+      <SFA>
+        <FILEPATH>f:\vs project\string\string\</FILEPATH>
+        <FILENAME>string.h</FILENAME>
+        <LINE>27</LINE>
+        <COLUMN>9</COLUMN>
+        <KEYEVENT>
+          <ID>3</ID>
+          <KIND>使用情况</KIND>
+          <IMPORTANCE>Essential</IMPORTANCE>
+          <MESSAGE>“str”不应为 NULL，因为这与“strcpy_s”上的 SAL 批注不一致</MESSAGE>
+        </KEYEVENT>
+      </SFA>
+    </PATH>
+  </DEFECT>
+</DEFECTS>

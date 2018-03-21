@@ -1,0 +1,98 @@
+#pragma once
+#include<list>
+#include<iostream>
+using namespace std;
+const double MAXCOST = 10000;         //����Ȩ
+template<typename T>
+class Graph
+{
+	struct EdgeNode
+	{                //�߽ڵ����ݽṹ
+		int dest;                    //�ߵ��յ��±�
+		double cost;                  //�ߵ�Ȩ
+		operator int() { return dest; }
+	};
+	T * VA;                           //��������ָ��
+	list<EdgeNode>* HL;               //����������ָ��
+	int sizeV, sizeE;                  //�������ͱ���
+	int maxV;                         //���������ռ䳤��
+	double GetCost(int si, int dj)const;     //��ʼ�����յ��±���ȡ�ߵ�Ȩ
+public:
+	Graph(int n = 100) :sizeV(0), sizeE(0), maxV(n) {
+		HL = new list<EdgeNode>[n];  //哦哦哦哦
+		VA = new T[n];
+	}
+	~Graph() { delete[]VA; delete[]HL; }     //��������
+	int Empty()const { return(sizeV == 0); }  //�п�
+	int Full()const { return(sizeV == maxV); } //����
+	int SizeV()const { return(sizeV); }       //ȡ������
+	int SizeE()const { return(sizeE); }       //ȡ����
+	double GetCost(const T& v1, const T& v2)const;   //ͨ���ߵ�ʼ�����յ�ȡȨ
+	int FindNode(const T& v)const;              //ȡ�����±�
+	bool FindNode(T& v, int pos)const;              //���±�Ϊpos�Ķ����浽v��
+	bool InsertV(const T&v);                        //���붥��
+	bool InsertE(const T& v1, const T& v2, double w);  //������
+	bool DeleteV(const T&v);                             //ɾ������
+	bool DeleteE(const T& v1, const T& v2);             //ɾ����
+	void ReadGraph(const char* filename);               //�Ӵ����ļ��ж�ȡͼ������
+	void WriteGraph(const char* filename);              //�������ļ���д��ͼ������
+	template<typename T>
+	friend ostream& operator<<(ostream& ostr, const Graph<T>& g) {  //��������������
+		for (int i = 0; i < g.sizeV; i++) {
+			ostr << i << '-' << g.VA[i] << ':';          // 输出顶点下标和顶点
+			list<Graph<T>::EdgeNode>::iterator first = g.HL[i].begin(), last = g.HL[i].end();
+			for (; first != last; first++)
+				cout << '(' << (*first).dest << ',' << (*fisrt).cost << ')' << ' ';
+			ostr << endl;
+		}
+	}
+	template<typename T>
+	friend istream& operator >> (istream& istr,  Graph<T>& g) {//��������������
+		char s = [500]; int n; double w;
+		T v1, v2;
+		istr >> s >> n;
+		for (int i = 1; i < n; i++) {
+			istr >> v1 >> v2 >> w;
+			g.InsertE(v1, v2, w);
+		}
+		return (istr);
+	}
+};
+template<typename T>
+int Graph<T>::FindNode(const T & v)const             //取顶点的下标
+{
+	for (int i = 0; i < sizeV; i++)
+		if (VA[i] == v)
+			return(i);
+	return(-1);
+}
+template<typename T>
+bool Graph<T>::FindNode(T& v, int pos)const         //将下标为pos的顶点存到v中
+{
+	if (pos < 0 || pos >= sizeV)                            //pos值非法
+		return 0;
+	v = VA[pos];
+	return 1;
+}
+template<typename T>
+bool Graph<T>::InsertV(const T& v)               //插入顶点
+{
+	if (sizeV == maxV)
+		return 0;
+	VA[sizeV] = v;
+	sizeV++ + ;
+	return 1;
+}
+template<typename T>
+bool Graph<T>::InsertE(const T& v1, const T& v2, double w)     //插入边
+{
+	int si = FindNode(v1), dj = FindNode(v2);
+	if (si == -1 || dj == -1 || si == dj)
+		return 0;
+	EdgeNode en;
+	en.dest = dj;
+	en.cost = w;
+	HL[si].Insert(HL[si].end(), en);
+	sizeE++;
+	return 1;
+}

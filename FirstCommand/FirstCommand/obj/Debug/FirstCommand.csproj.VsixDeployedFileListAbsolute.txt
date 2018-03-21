@@ -1,0 +1,4 @@
+C:\Users\50212\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Ace\FirstCommand\1.0\\FirstCommand.dll
+C:\Users\50212\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Ace\FirstCommand\1.0\\FirstCommand.pdb
+C:\Users\50212\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Ace\FirstCommand\1.0\\FirstCommand.pkgdef
+C:\Users\50212\AppData\Local\Microsoft\VisualStudio\14.0Exp\Extensions\Ace\FirstCommand\1.0\\extension.vsixmanifest
